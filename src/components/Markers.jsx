@@ -3,8 +3,8 @@ import MarkersInputForm from "./MarkersInputForm"
 import MarkersList from "./MarkersList"
 
 export class Markers extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = { markers: ['1', 2, 3] }
     }
 
