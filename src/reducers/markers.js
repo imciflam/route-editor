@@ -1,4 +1,4 @@
-import { CREATE_MARKER, REMOVE_MARKER } from '../constants/actionTypes';
+import { CREATE_MARKER, REMOVE_MARKER } from '../actions/types';
 
 const markers = (state = [], action) => {
     switch (action.type) {

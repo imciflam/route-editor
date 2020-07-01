@@ -1,21 +1,36 @@
-import React, { Component } from 'react'
-import MarkersListItem from "./MarkersListItem"
+import React from 'react';
+import MarkerItem from './MarkerItem';
+import { connect } from 'react-redux';
+import { removeMarker } from '../actions/actions';
 
-export class MarkersList extends Component {
+class MarkersList extends React.Component {
 
-    items = this.props.markers.map((element, index) => {
-        return <MarkersListItem key={index} itemData={element}
-        />
-    })
+    removeMarker = id => this.props.removeMarker(id);
 
     render() {
-        console.log(this.props)
         return (
-            <div>
-                {this.items}
-            </div >
-        )
+            <ul >
+                {this.props.markers.map(marker => (
+                    <MarkerItem
+                        key={marker.id}
+                        name={marker.name}
+                        onMarkerDelete={() => this.removeMarker(marker.id)}
+                    />
+                ))}
+            </ul>
+        );
     }
 }
 
-export default MarkersList
+const mapStateToProps = state => ({
+    draggedItem: state.draggedItem
+});
+
+const mapDispatchToProps = dispatch => ({
+    removeMarker: (id) => dispatch(removeMarker(id)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MarkersList);
