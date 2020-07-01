@@ -1,0 +1,2 @@
+export const CREATE_MARKER = 'CREATE_MARKER';
+export const REMOVE_MARKER = 'REMOVE_MARKER'; 
