@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/route-editor/static/js/main.d8d2f71c.chunk.js",
+    "main.js.map": "/route-editor/static/js/main.d8d2f71c.chunk.js.map",
+    "runtime-main.js": "/route-editor/static/js/runtime-main.20ce594d.js",
+    "runtime-main.js.map": "/route-editor/static/js/runtime-main.20ce594d.js.map",
+    "static/js/2.4997967d.chunk.js": "/route-editor/static/js/2.4997967d.chunk.js",
+    "static/js/2.4997967d.chunk.js.map": "/route-editor/static/js/2.4997967d.chunk.js.map",
+    "index.html": "/route-editor/index.html",
+    "precache-manifest.6ac0f6597a3f66b02ec8c3a107ca84ba.js": "/route-editor/precache-manifest.6ac0f6597a3f66b02ec8c3a107ca84ba.js",
+    "service-worker.js": "/route-editor/service-worker.js",
+    "static/js/2.4997967d.chunk.js.LICENSE.txt": "/route-editor/static/js/2.4997967d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.20ce594d.js",
+    "static/js/2.4997967d.chunk.js",
+    "static/js/main.d8d2f71c.chunk.js"
+  ]
+}
