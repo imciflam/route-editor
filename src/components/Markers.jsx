@@ -6,7 +6,7 @@ import MarkersInputForm from './MarkersInputForm';
 export class Markers extends Component {
     render() {
         return (
-            <div>
+            <div style={{ width: '30%' }}>
                 <MarkersInputForm />
                 <MarkersList markers={this.props.markers} />
             </div>

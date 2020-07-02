@@ -3,7 +3,6 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow, Polyline } from 'google-maps
 import { connect } from 'react-redux';
 import { changePosition, changeCenter } from '../actions/actions';
 
-
 export class MapContainer extends Component {
 
     constructor(props) {
@@ -57,7 +56,7 @@ export class MapContainer extends Component {
                     marker={this.state.activeMarker}
                     onClose={this.deactivateMarker}
                     visible={this.state.activeMarker !== null}>
-                    {this.state.activeMarker ? this.state.activeMarker.name : ""}
+                    <span>{this.state.activeMarker ? this.state.activeMarker.name : ""}</span>
                 </InfoWindow>
                 <Polyline
                     path={this.props.lineCoordinates}

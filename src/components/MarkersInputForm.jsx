@@ -21,7 +21,7 @@ class MarkersInputForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.createMarker}>
+            <form onSubmit={this.createMarker} style={{ display: "flex", flexDirection: "column" }}>
                 <input
                     type="text"
                     onChange={this.handleChange}
