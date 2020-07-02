@@ -7,7 +7,7 @@ import {
     CHANGE_CENTER,
 } from '../actions/types';
 
-export const createMarker = (id, name, position) => ({
+export const addMarker = (id, name, position) => ({
     type: ADD_MARKER,
     id, name, position
 });
