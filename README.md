@@ -15,3 +15,7 @@ Launches the test runner in the interactive watch mode.
 ### `yarn build`
 
 Builds the app for production to the `build` folder.
+
+### `yarn deploy`
+
+Builds the app for production and deploys it to GitHub Pages.
