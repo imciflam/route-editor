@@ -3,7 +3,8 @@ import {
     REMOVE_MARKER,
     CHANGE_ORDER,
     CHANGE_POSITION,
-    SET_DRAGGED_ITEM
+    SET_DRAGGED_ITEM,
+    CHANGE_CENTER,
 } from '../actions/types';
 
 export const createMarker = (id, name, position) => ({
@@ -29,4 +30,10 @@ export const changePosition = (id, position) => ({
 export const setdragged = (dragged) => ({
     type: SET_DRAGGED_ITEM,
     dragged
+});
+
+
+export const changeCenter = (lat, lng) => ({
+    type: CHANGE_CENTER,
+    lat, lng
 });

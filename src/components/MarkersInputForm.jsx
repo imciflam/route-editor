@@ -15,7 +15,7 @@ class MarkersInputForm extends Component {
     createMarker = e => {
         e.preventDefault();
         const randId = Math.floor(Math.random() * 1000)
-        this.props.createMarker(randId, this.state.newMarker);
+        this.props.createMarker(randId, this.state.newMarker, this.props.center);
         this.setState({ newMarker: '' });
     }
 
@@ -33,11 +33,15 @@ class MarkersInputForm extends Component {
         );
     }
 }
+const mapStateToProps = state => ({
+    center: state.center
+});
+
 const mapDispatchToProps = dispatch => ({
     createMarker: (id, name, position) => dispatch(createMarker(id, name, position))
 });
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(MarkersInputForm);

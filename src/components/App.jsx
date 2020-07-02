@@ -10,6 +10,7 @@ class App extends Component {
                 <MapContainer
                     markers={this.props.markers}
                     lineCoordinates={this.props.markers.map(marker => marker.position)}
+                    center={this.props.initialCenter}
                 />
                 <Markers markers={this.props.markers} />
             </div>
@@ -18,6 +19,7 @@ class App extends Component {
 }
 const mapStateToProps = state => ({
     markers: state.markers,
+    initialCenter: state.initialCenter
 });
 
 export default connect(mapStateToProps)(App);

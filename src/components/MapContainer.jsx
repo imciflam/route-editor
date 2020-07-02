@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow, Polyline } from 'google-maps-react';
 import { connect } from 'react-redux';
-import { changePosition } from '../actions/actions';
+import { changePosition, changeCenter } from '../actions/actions';
 
 
 export class MapContainer extends Component {
@@ -26,6 +26,9 @@ export class MapContainer extends Component {
     deactivateMarker = () => { this.setState({ activeMarker: null }) }
 
 
+    onCenterChanged = (_mapProps, map) => this.props.changeCenter(map.center);
+
+
     render() {
         return (
             <Map
@@ -33,6 +36,8 @@ export class MapContainer extends Component {
                 zoom={10}
                 containerStyle={{ width: '60%' }}
                 clickableIcons={true}
+                initialCenter={this.props.center}
+                onCenterChanged={this.onCenterChanged}
             >
                 {
                     (this.props.markers || []).map(marker => (
@@ -65,8 +70,8 @@ export class MapContainer extends Component {
 
 const mapDispatchToProps = dispatch => ({
     changePosition: (id, position) => dispatch(changePosition(id, position)),
+    changeCenter: ({ lat, lng }) => dispatch(changeCenter(lat(), lng()))
 });
-
 
 const googleWrap = GoogleApiWrapper({
     apiKey: 'AIzaSyBWohqCXZMM2XZgyuZowi9GXexqwNBIctc'
