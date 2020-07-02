@@ -1,8 +1,9 @@
-import { CREATE_MARKER, REMOVE_MARKER } from '../actions/types';
+import { ADD_MARKER, REMOVE_MARKER, CHANGE_ORDER, CHANGE_POSITION } from '../actions/types';
 
 const markers = (state = [], action) => {
     switch (action.type) {
-        case CREATE_MARKER:
+
+        case ADD_MARKER:
             return [
                 ...state,
                 {
@@ -11,14 +12,34 @@ const markers = (state = [], action) => {
                     position: action.position
                 }
             ];
+
         case REMOVE_MARKER: {
-            let marker = state.find(marker => marker.id === action.id);
-            let index = state.indexOf(marker);
+            const markerToRemove = state.find(marker => marker.id === action.id)
+            const newArr = state.filter(element => element !== markerToRemove)
+            return newArr;
+        }
+
+        case CHANGE_ORDER: {
+            const markerToMove = state.find(marker => marker.id === action.markerId); // get a marker
+            const afterIndex = state.indexOf(state.find(marker => marker.id === action.afterId));
+            const markers = state.filter(marker => marker.id !== action.markerId);
             return [
-                ...state.slice(0, index),
-                ...state.slice(index + 1)
+                ...markers.slice(0, afterIndex),
+                markerToMove,
+                ...markers.slice(afterIndex)
             ];
         }
+
+        case CHANGE_POSITION:
+            return state.map((marker) => {
+                if (marker.id === action.id) {
+                    return {
+                        ...marker, position: action.position
+                    };
+                }
+                return marker
+            })
+
         default:
             return state;
     }

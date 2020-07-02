@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow, Polyline } from 'google-maps-react';
 import { connect } from 'react-redux';
-import { changePosition, changeCenter } from '../actions/actions';
+import { changePosition } from '../actions/actions';
 
 
 export class MapContainer extends Component {
@@ -25,46 +25,46 @@ export class MapContainer extends Component {
 
     deactivateMarker = () => { this.setState({ activeMarker: null }) }
 
-    onCenterChanged = (_mapProps, map) => this.props.changeCenter(map.center);
 
-    render = () => (
-        <Map
-            google={this.props.google}
-            zoom={10}
-            containerStyle={{ width: '60%' }}
-            initialCenter={this.props.center}
-            onCenterChanged={this.onCenterChanged}
-            clickableIcons={true}
-        >
-            {(this.props.markers || []).map(marker => (
-                <Marker
-                    label={marker.name}
-                    id={marker.id}
-                    key={marker.id}
-                    name={marker.name}
-                    onDragend={(_t, _map, coord) => this.onMarkerDragEnd(coord, marker.id)}
-                    draggable={true}
-                    position={marker.position}
-                    onClick={this.onMarkerClick}
+    render() {
+        return (
+            <Map
+                google={this.props.google}
+                zoom={10}
+                containerStyle={{ width: '60%' }}
+                clickableIcons={true}
+            >
+                {
+                    (this.props.markers || []).map(marker => (
+                        <Marker
+                            id={marker.id}
+                            label={marker.name}
+                            name={marker.name}
+                            key={marker.id}
+                            onDragend={(_t, _map, coord) => this.onMarkerDragEnd(coord, marker.id)}
+                            draggable={true}
+                            position={marker.position}
+                            onClick={this.onMarkerClick}
+                        />
+                    ))
+                }
+                <InfoWindow
+                    marker={this.state.activeMarker}
+                    onClose={this.deactivateMarker}
+                    visible={this.state.activeMarker !== null}>
+                    {this.state.activeMarker ? this.state.activeMarker.name : ""}
+                </InfoWindow>
+                <Polyline
+                    path={this.props.lineCoordinates}
+                    geodesic={true}
                 />
-            ))}
-            <InfoWindow
-                visible={this.state.activeMarker !== null}
-                onClose={this.deactivateMarker}
-                marker={this.state.activeMarker}>
-                {this.state.activeMarker ? this.state.activeMarker.name : ""}
-            </InfoWindow>
-            <Polyline
-                path={this.props.lineCoordinates}
-                geodesic={true}
-            />
-        </Map>
-    );
+            </Map>
+        );
+    }
 }
 
 const mapDispatchToProps = dispatch => ({
     changePosition: (id, position) => dispatch(changePosition(id, position)),
-    changeCenter: ({ lat, lng }) => dispatch(changeCenter(lat(), lng()))
 });
 
 

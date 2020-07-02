@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export class MarkersListItem extends Component {
-    render() {
-        return (
-            <div>
-                {this.props.itemData}
-            </div>
-        )
-    }
-}
+const MarkersListItem = ({ name, onDragOver, onDragEnd, onDragStart, onMarkerDelete }) => (
+    <li onDragOver={onDragOver}>
+        <div
+            draggable
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+        >
+            {name}
+            <span onClick={onMarkerDelete}> ⌫</span>
+        </div>
+    </li>
+);
 
-export default MarkersListItem
+export default MarkersListItem;

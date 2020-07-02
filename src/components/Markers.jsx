@@ -1,23 +1,24 @@
-import React, { Component, Fragment } from 'react'
-import MarkersInputForm from "./MarkersInputForm"
-import MarkersList from "./MarkersList"
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import MarkersList from './MarkersList';
+import MarkersInputForm from './MarkersInputForm';
 
 export class Markers extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { markers: ['1', 2, 3] }
-    }
-
     render() {
         return (
-            <Fragment>
-                <div className="markers">
-                    <MarkersInputForm />
-                    <MarkersList markers={this.state.markers} />
-                </div>
-            </Fragment>
+            <div>
+                <MarkersInputForm />
+                <MarkersList markers={this.props.markers} />
+            </div>
         )
     }
 }
 
-export default Markers
+
+const mapStateToProps = state => ({
+    markers: state.markers,
+});
+
+export default connect(
+    mapStateToProps
+)(Markers);

@@ -1,2 +1,5 @@
-export const CREATE_MARKER = 'CREATE_MARKER';
-export const REMOVE_MARKER = 'REMOVE_MARKER'; 
+export const ADD_MARKER = 'ADD_MARKER';
+export const CHANGE_ORDER = 'CHANGE_ORDER';
+export const REMOVE_MARKER = 'REMOVE_MARKER';
+export const CHANGE_POSITION = 'CHANGE_POSITION';
+export const SET_DRAGGED_ITEM = 'SET_DRAGGED_ITEM';
