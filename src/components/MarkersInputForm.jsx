@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createMarker } from '../actions/actions';
+import { addMarker } from '../actions/actions';
 
 class MarkersInputForm extends Component {
     constructor(props) {
@@ -12,23 +12,25 @@ class MarkersInputForm extends Component {
 
     handleChange = e => this.setState({ newMarker: e.target.value });
 
-    createMarker = e => {
+    addMarker = e => {
         e.preventDefault();
         const randId = Math.floor(Math.random() * 1000)
-        this.props.createMarker(randId, this.state.newMarker, this.props.center);
+        this.props.addMarker(randId, this.state.newMarker, this.props.center);
         this.setState({ newMarker: '' });
     }
 
     render() {
         return (
-            <form onSubmit={this.createMarker} style={{ display: "flex", flexDirection: "column" }}>
+            <form onSubmit={this.addMarker} style={{ display: "flex", flexDirection: "column" }}>
+                <label for="markerNameInput">Enter a name for a marker:</label>
                 <input
                     type="text"
                     onChange={this.handleChange}
                     value={this.state.newMarker}
+                    id="markerNameInput"
                     required
                 />
-                <input type="submit" />
+                <button>Submit</button>
             </form>
         );
     }
@@ -38,7 +40,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    createMarker: (id, name, position) => dispatch(createMarker(id, name, position))
+    addMarker: (id, name, position) => dispatch(addMarker(id, name, position))
 });
 
 export default connect(
