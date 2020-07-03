@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import styled from 'styled-components'
 import MarkersListItem from './MarkersListItem';
 import { connect } from 'react-redux';
 import { removeMarker, setdragged, changeOrder } from '../actions/actions';
+
+
+const MainList = styled.ul` 
+list-style-type: none; 
+padding: 10px;
+`;
 
 class MarkersList extends Component {
 
@@ -24,7 +31,7 @@ class MarkersList extends Component {
 
     render() {
         return (
-            <ul>
+            <MainList>
                 {(this.props.markers || []).map(marker => (
                     <MarkersListItem
                         key={marker.id}
@@ -35,7 +42,7 @@ class MarkersList extends Component {
                         onMarkerDelete={() => this.removeMarker(marker.id)}
                     />
                 ))}
-            </ul>
+            </MainList>
         );
     }
 }

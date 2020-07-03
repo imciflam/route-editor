@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import styled from 'styled-components'
 import { connect } from 'react-redux';
 import { addMarker } from '../actions/actions';
+
+
+const MainForm = styled.form`
+display: flex;
+flex-direction: column;
+padding:10px; 
+`;
 
 class MarkersInputForm extends Component {
     constructor(props) {
@@ -21,8 +29,8 @@ class MarkersInputForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.addMarker} style={{ display: "flex", flexDirection: "column" }}>
-                <label for="markerNameInput">Enter a name for a marker:</label>
+            <MainForm onSubmit={this.addMarker} >
+                <label htmlFor="markerNameInput">Enter a name for a marker:</label>
                 <input
                     type="text"
                     onChange={this.handleChange}
@@ -31,7 +39,7 @@ class MarkersInputForm extends Component {
                     required
                 />
                 <button>Submit</button>
-            </form>
+            </MainForm>
         );
     }
 }
